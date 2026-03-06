@@ -670,8 +670,8 @@ if "quick_action_title" not in st.session_state:
 if "api_key" not in st.session_state:
     # Try Streamlit Cloud secrets first, then env var, then empty
     try:
-        st.session_state.api_key = st.secrets["ANTHROPIC_API_KEY"]
-    except (KeyError, FileNotFoundError):
+        st.session_state.api_key = st.secrets.get("ANTHROPIC_API_KEY", "")
+    except Exception:
         st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY", "")
 if "nav_history" not in st.session_state:
     st.session_state.nav_history = []
@@ -754,10 +754,14 @@ with st.sidebar:
         # Check if key was loaded from secrets/env (don't expose it in the input)
         key_from_secrets = False
         try:
-            if st.secrets.get("ANTHROPIC_API_KEY"):
+            if st.secrets.get("ANTHROPIC_API_KEY", ""):
                 key_from_secrets = True
-        except (FileNotFoundError, KeyError):
+        except Exception:
             pass
+
+        # Also check if we have a key in session state from env var
+        if not key_from_secrets and st.session_state.api_key:
+            key_from_secrets = True
 
         if key_from_secrets:
             st.success("API key loaded", icon=":material/check:")
