@@ -1,0 +1,444 @@
+{
+  "metadata": {
+    "title": "CalJOBS Case Notes Code Database",
+    "version": "1.0",
+    "created": "2026-02-04",
+    "total_codes": 60,
+    "categories": [
+      "Job Development & Placement",
+      "Employer Outreach & Networking",
+      "Employer Compliance & Legal",
+      "Training & Education",
+      "Youth Services",
+      "Tax Credits & Incentives",
+      "Workforce Planning & Strategy",
+      "Supportive Services",
+      "Follow-up & Quality Assurance",
+      "Recruitment & Hiring",
+      "Special Programs",
+      "Administrative"
+    ]
+  },
+  "codes": [
+    {
+      "code": "E01",
+      "name": "Alien Labor Certification",
+      "description": "Under the H-2A program, local AJCC staff developed a hiring agreement with an employer that took into account the local AJCC Site's resources, but that did not adversely affect the site's ability to adequately serve other employers. The hiring agreement may not include provisions for AJCC staff to assist the employer in pre-employment activities such as verifying prior employment or obtaining references.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["H-2A", "alien labor", "hiring agreement", "Elevate", "foreign worker", "labor certification", "pre-employment"]
+    },
+    {
+      "code": "E02",
+      "name": "Americans with Disabilities",
+      "description": "AJCC contacted an employer that submitted a job posting that appeared to be discriminatory under the American with Disabilities Act of 1990. In contacting the employer, AJCC provided legal job posting requirements, and informed the employer that unless the job posting's specifications can be legally justified, that the employer's job posting request could not be accommodated.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["ADA", "disabilities", "discriminatory", "job posting", "compliance", "Americans with Disabilities Act", "legal requirements"]
+    },
+    {
+      "code": "E03",
+      "name": "CalJOBS Assistance",
+      "description": "AJCC staff provided an employer with information regarding CalJOBS, or assisted an employer with registering in CalJOBS.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["CalJOBS", "registration", "assistance", "employer registration", "system help"]
+    },
+    {
+      "code": "E04",
+      "name": "Apprenticeship",
+      "description": "AJCC staff provided an employer with information regarding apprenticeship programs, or assisted an employer with registering in CalJOBS.",
+      "category": "Training & Education",
+      "keywords": ["apprenticeship", "training", "employer information", "workforce development"]
+    },
+    {
+      "code": "E05",
+      "name": "Bonding",
+      "description": "The Designated AJCC staff person responsible for providing and/or arranging for bonding services, completed the required steps to provide an employer with a fidelity bond for an at-risk or hard-to-place participant. These steps include, but are not limited to, ensuring the employer meets all eligibility requirements, completing the EDD Fidelity Bonding Certification Request, completing the EDD Fidelity Bonding Employer Confirmation Letter, and submitting bonding requests to the Workforce Services' Division Bonding Coordinator.",
+      "category": "Special Programs",
+      "keywords": ["bonding", "fidelity bond", "at-risk", "hard-to-place", "EDD", "certification", "employer eligibility"]
+    },
+    {
+      "code": "E06",
+      "name": "CalJOBS External Recruitment",
+      "description": "After determining that the CalJOBS job-seeker participant pool did not include qualified individuals for an employer's specific job opening, AJCC staff conducted recruitment efforts to locate qualified individuals. These efforts include, but are not limited to, contacting colleges, trade schools, professional organizations, and other employment and training providers who may have access to individuals with the employer's required skills and qualifications.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["external recruitment", "CalJOBS", "colleges", "trade schools", "professional organizations", "qualified candidates", "talent search"]
+    },
+    {
+      "code": "E07",
+      "name": "Disability Insurance",
+      "description": "An AJCC sponsored a Disability Insurance seminar for employers.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["disability insurance", "seminar", "employer education", "DI"]
+    },
+    {
+      "code": "E08",
+      "name": "Employer Advisory Council (EAC)",
+      "description": "AJCC staff provided an employer information regarding the Employer Advisory Council, or provided AJCC Services to an employer at an Employer Advisory Council event.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["EAC", "Employer Advisory Council", "employer services", "council event", "networking"]
+    },
+    {
+      "code": "E09",
+      "name": "Employer Application Issuance",
+      "description": "At the request of an employer, AJCC staff issued the employer's work application to job seekers. Prior to agreeing to issue the employer's work application, the staff member reviewed the work application to ensure compliance with the Department of Fair Employment and Housing pre-employment guidelines.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["application issuance", "work application", "DFEH", "pre-employment", "compliance", "fair employment"]
+    },
+    {
+      "code": "E10",
+      "name": "Employer Recall",
+      "description": "AJCC staff suspended an employer's access to CalJOBS after determining the employer violated Workforce Services' regulations and/or Federal, state, or local employment-related laws. Reasons for access suspension include, but are not limited to: the employer includes discriminatory specifications in the job listing; fails to adhere to Federal, State, or local employment-related laws; misrepresents terms or conditions of employment; causes Workforce Services to receive substantiated formal or informal complaints from job seekers; and posts an invalid job opening, such as one due to a trade dispute.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["employer recall", "suspension", "violation", "discriminatory", "complaints", "trade dispute", "access revoked"]
+    },
+    {
+      "code": "E11",
+      "name": "Employment Training Panel (ETP)",
+      "description": "AJCC staff assisted an employer with information regarding the Employment Training Panel's (ETP) available programs and services, including eligibility requirements, application assistance and programs specific to an employer's business. This definition does not include Training for New Employees (E40), or Training for Current Employees (E41).",
+      "category": "Training & Education",
+      "keywords": ["ETP", "Employment Training Panel", "training programs", "eligibility", "application assistance", "employer training"]
+    },
+    {
+      "code": "E12",
+      "name": "Employment Law",
+      "description": "An AJCC sponsored a labor law seminar for employers.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["employment law", "labor law", "seminar", "employer education", "legal compliance"]
+    },
+    {
+      "code": "E13",
+      "name": "Employment Taxes",
+      "description": "An AJCC sponsored a payroll tax seminar for employers.",
+      "category": "Tax Credits & Incentives",
+      "keywords": ["employment taxes", "payroll tax", "seminar", "tax education", "employer taxes"]
+    },
+    {
+      "code": "E14",
+      "name": "Enterprise Zone (EZ) Tax Credits",
+      "description": "AJCC staff identified a potentially eligible job seeker and referred him/her to the nearest Enterprise Zone-certifying agency or Enterprise Zone employer. Staff may not perform eligibility determinations, request documentation, or sign the Enterprise Tax Voucher (DOC EZ1).",
+      "category": "Tax Credits & Incentives",
+      "keywords": ["enterprise zone", "EZ", "tax credits", "tax voucher", "DOC EZ1", "certifying agency"]
+    },
+    {
+      "code": "E15",
+      "name": "Exclusive Hiring Agreement",
+      "description": "AJCC staff established an agreement with an employer that requires all job seekers to apply through CalJOBS.",
+      "category": "Job Development & Placement",
+      "keywords": ["exclusive hiring", "agreement", "CalJOBS", "hiring agreement", "exclusive recruitment"]
+    },
+    {
+      "code": "E16",
+      "name": "Federal Contractor Job Listing",
+      "description": "AJCC staff assisted an employer with federal job contractor job listing. Staff ensured that the federal contractor was properly identified, and that its special employment needs, particularly those relating to qualified veterans' hiring, were met to the fullest possible extent.",
+      "category": "Job Development & Placement",
+      "keywords": ["federal contractor", "job listing", "veterans hiring", "government contract", "OFCCP"]
+    },
+    {
+      "code": "E17",
+      "name": "Fraud Reporting",
+      "description": "After receiving a job listing from a questionable employer, AJCC staff ensured the request was genuine, and represented an actual job opportunity. Questionable employer examples include employers who require unusual pre-employment action on the job-seeker's part (e.g. a deposit for some alleged service, such as training, transportation dues, fees, or food and lodging; employers who require monetary deposits or payments), unknown employers who request permission to interview at the AJCC; employers who ask job seekers to be sent to an address that's not a normal place of business (e.g., hotel room), unknown employer who offer to provide transportation to the job site, and employers whose address or job location is vague.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["fraud", "questionable employer", "scam", "suspicious", "deposits", "fake job", "investigation"]
+    },
+    {
+      "code": "E18",
+      "name": "High Density Unemployment Area Resident",
+      "description": "AJCC staff assisted an employer in hiring a high-density unemployment area resident.",
+      "category": "Special Programs",
+      "keywords": ["high density unemployment", "HDUA", "targeted hiring", "underserved area", "unemployment area"]
+    },
+    {
+      "code": "E19",
+      "name": "Internship",
+      "description": "AJCC staff entered an internship into CalJOBS for an employer, or publicized the internship at the AJCC.",
+      "category": "Training & Education",
+      "keywords": ["internship", "CalJOBS", "work-based learning", "intern", "employer internship"]
+    },
+    {
+      "code": "E20",
+      "name": "Job Development Contact",
+      "description": "AJCC Staff contacted an employer regarding job development contact participation. If the employer is not registered, then staff would need to complete the employer's CalJOBS' registration to collect the employer's information.",
+      "category": "Job Development & Placement",
+      "keywords": ["job development", "employer contact", "registration", "CalJOBS", "outreach", "cold call"]
+    },
+    {
+      "code": "E21",
+      "name": "Job Fairs",
+      "description": "AJCC staff partnered with an appropriate entity within the community to present and/or participate in a job fair.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["job fair", "community partnership", "hiring event", "career fair", "recruitment event"]
+    },
+    {
+      "code": "E22",
+      "name": "Job Identification Contact",
+      "description": "AJCC staff contacted a CalJOBS registered employer for available postings.",
+      "category": "Job Development & Placement",
+      "keywords": ["job identification", "employer contact", "available postings", "CalJOBS", "job openings"]
+    },
+    {
+      "code": "E23",
+      "name": "Job Listing Assistance",
+      "description": "AJCC staff assisted a CalJOBS-registered employer with filling out a job listing form (DE 8203), or AJCC staff completed a job order listing in CalJOBS on behalf of the employer. This service does not include CalJOBS Assistance (E03).",
+      "category": "Job Development & Placement",
+      "keywords": ["job listing", "DE 8203", "job order", "CalJOBS", "posting assistance", "job posting"]
+    },
+    {
+      "code": "E24",
+      "name": "Job Referral",
+      "description": "BSR referred employers to participants and informed them of open positions within the company.",
+      "category": "Job Development & Placement",
+      "keywords": ["job referral", "BSR", "referral", "open positions", "candidate matching", "placement"]
+    },
+    {
+      "code": "E25",
+      "name": "Job Shadowing",
+      "description": "AJCC staff coordinated a job shadowing experience for a qualified participant with an employer. The employer would like to hire a participant, but would first like the participant to do a job shadowing.",
+      "category": "Training & Education",
+      "keywords": ["job shadowing", "work-based learning", "employer coordination", "pre-hire", "career exploration"]
+    },
+    {
+      "code": "E26",
+      "name": "Labor Market Information",
+      "description": "AJCC staff provided an employer with national, state, or local area's market information to assist in the employer's business plan expansion, relocation, or future hiring and training needs; or, referred the employer to a labor market information consultant who prepared detailed occupational labor market information for the employer.",
+      "category": "Workforce Planning & Strategy",
+      "keywords": ["LMI", "labor market", "market information", "business expansion", "relocation", "hiring needs", "occupational data"]
+    },
+    {
+      "code": "E27",
+      "name": "Local Planning, Zoning, Permits",
+      "description": "AJCC staff provided an employer with Local Planning, Zoning, and Permits information.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["planning", "zoning", "permits", "local government", "business development", "regulations"]
+    },
+    {
+      "code": "E28",
+      "name": "Marketing Package",
+      "description": "AJCC staff provided employer marketing materials containing information regarding EDD services. Materials could include, but are not limited to, DE forms, brochures geared towards the employer, Labor Market Information Fact Sheet, and flyers.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["marketing", "brochures", "EDD services", "DE forms", "flyers", "fact sheet", "marketing materials"]
+    },
+    {
+      "code": "E29",
+      "name": "New Employee Registry",
+      "description": "AJCC staff provided an employer with specific information pertaining to the California New Employee Registry.",
+      "category": "Employer Compliance & Legal",
+      "keywords": ["new employee registry", "California", "registry", "new hire reporting", "compliance"]
+    },
+    {
+      "code": "E30",
+      "name": "On-The-Job Training",
+      "description": "AJCC staff established an on-the-job training contract with an employer. Under the contract, the employer provided occupational training to a WIOA participant in exchange for a specific percentage reimbursement of the participant's wage rate, and received technical assistance from AJCC staff throughout the life of the training contract.",
+      "category": "Training & Education",
+      "keywords": ["OJT", "on-the-job training", "training contract", "WIOA", "wage reimbursement", "occupational training"]
+    },
+    {
+      "code": "E31",
+      "name": "Older Worker Hiring",
+      "description": "AJCC staff conducted outreach efforts to employers highlighting the potential of older workers and their contributions to a diverse workforce. The outreach efforts highlighted traits that make older workers ideal candidates for employment, including their reliability, commitment, enthusiasm, and a keen know-how that comes with a lifetime of experience.",
+      "category": "Special Programs",
+      "keywords": ["older workers", "senior employment", "diversity", "mature workers", "experienced workers", "outreach"]
+    },
+    {
+      "code": "E32",
+      "name": "Rapid Response (layoff or closure)",
+      "description": "AJCC staff provided rapid response activities in the case of a permanent closure or mass layoff at a plant, facility or enterprise, or a natural or other disaster that resulted in mass job dislocation in order to assist dislocated workers in obtaining reemployment as soon as possible. Rapid response activities include, but are not limited to, establishing on-site contact with employers and employee representatives; providing information and access to available employment and training activities; providing an on-site presentation to employees on when to file for, how to file for, and who qualifies for unemployment insurance; assisting in establishing a labor-management committee; voluntarily agreed to by labor and management, with the ability to devise and implement a strategy for assessing the employment and training needs of Dislocated Workers, and obtaining services to meet such needs; providing emergency assistance adapted to the particular closure, layoffs or disaster; and providing assistance to the local community in developing a coordinated response and in obtaining access to state economic development assistance.",
+      "category": "Workforce Planning & Strategy",
+      "keywords": ["rapid response", "layoff", "closure", "mass layoff", "dislocated workers", "WARN", "reemployment", "disaster"]
+    },
+    {
+      "code": "E33",
+      "name": "Recruitment at EDD",
+      "description": "An employer used an AJCC's facility and scheduling services to screen and interview job-seeking participants.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["recruitment", "EDD", "AJCC facility", "interview", "screening", "on-site recruitment"]
+    },
+    {
+      "code": "E34",
+      "name": "Reverse Referral Agreement",
+      "description": "AJCC staff established an agreement with an employer that it would provide a handout or poster to encourage job seekers to enroll and enter a resume in CalJOBS. The rationale for this agreement is that when an employer has openings and lists them in the CalJOBS those job seekers' resumes can be accessed by the employer. This Agreement reduces business interruptions to the employer when there are no openings, and expands the job-seeker participant pool in CalJOBS.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["reverse referral", "agreement", "CalJOBS", "resume", "enrollment", "participant pool"]
+    },
+    {
+      "code": "E35",
+      "name": "Resume Referral",
+      "description": "AJCC staff conducted a resume search to find job-seeking participant resumes that match an employer's job requirements, and provided those resumes to the employer.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["resume referral", "resume search", "candidate matching", "job requirements", "talent matching"]
+    },
+    {
+      "code": "E36",
+      "name": "Career Pathways Programs",
+      "description": "AJCC staff coordinated a focused recruitment campaign for a new business venture, or a facility needing a large number of specialized workers.",
+      "category": "Workforce Planning & Strategy",
+      "keywords": ["career pathways", "recruitment campaign", "specialized workers", "new business", "workforce pipeline"]
+    },
+    {
+      "code": "E37",
+      "name": "Targeted Recruitment",
+      "description": "AJCC staff coordinated a focused recruitment campaign for a new business venture, or a facility needing a large number of specialized workers.",
+      "category": "Recruitment & Hiring",
+      "keywords": ["targeted recruitment", "focused recruitment", "specialized workers", "recruitment campaign", "mass hiring"]
+    },
+    {
+      "code": "E38",
+      "name": "Tax Credit Programs",
+      "description": "AJCC staff informed an employer about available hiring incentives and tax credits including, but not limited to, the Work Opportunity Tax Credit (WOTC), empowerment zone/renewal community tax incentives, the disabled access credit, and the architectural and transportation tax deduction. This definition does not include the Veteran Hiring Incentive Program (E43).",
+      "category": "Tax Credits & Incentives",
+      "keywords": ["tax credits", "WOTC", "hiring incentives", "empowerment zone", "disabled access credit", "tax deduction"]
+    },
+    {
+      "code": "E39",
+      "name": "Trade Credit Programs",
+      "description": "AJCC staff informed an employer of Trade Assistance Act (TAA) associated programs.",
+      "category": "Tax Credits & Incentives",
+      "keywords": ["trade credit", "TAA", "Trade Assistance Act", "trade programs", "trade adjustment"]
+    },
+    {
+      "code": "E40",
+      "name": "Training for New Employees",
+      "description": "AJCC staff informed an employer of funding available through the Employment Training Panel (ETP) for workforce training programs, and referred it to the ETP website or phone number for additional information.",
+      "category": "Training & Education",
+      "keywords": ["new employee training", "ETP", "training funding", "workforce training", "new hire training"]
+    },
+    {
+      "code": "E41",
+      "name": "Training for Current Employees",
+      "description": "AJCC staff informed an employer of funding available through the Employment Training Panel (ETP) for workforce training programs, and referred it to the ETP website or phone number for additional information.",
+      "category": "Training & Education",
+      "keywords": ["current employee training", "ETP", "training funding", "workforce training", "upskilling", "incumbent worker"]
+    },
+    {
+      "code": "E42",
+      "name": "Unemployment Insurance",
+      "description": "AJCC staff sponsored a seminar for employers regarding Unemployment Insurance.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["unemployment insurance", "UI", "seminar", "employer education", "insurance"]
+    },
+    {
+      "code": "E43",
+      "name": "Veteran Hiring Incentive Program",
+      "description": "AJCC staff informed an employer about the Work Opportunity Tax Credit (WOTC) and the 'qualified Veterans' is one of the WOTC target groups that may qualify the employer for a tax credit.",
+      "category": "Tax Credits & Incentives",
+      "keywords": ["veteran", "WOTC", "hiring incentive", "tax credit", "qualified veterans", "military"]
+    },
+    {
+      "code": "E44",
+      "name": "Welfare Recipient Hiring",
+      "description": "AJCC staff assisted an employer in hiring a welfare recipient.",
+      "category": "Special Programs",
+      "keywords": ["welfare", "welfare recipient", "hiring assistance", "public assistance", "CalWORKs"]
+    },
+    {
+      "code": "E45",
+      "name": "Work Experience Programs",
+      "description": "AJCC staff coordinated with an employer to provide a participant with a Work Experience Opportunity, and technical assistance throughout the life of the contract. Work Experience is a structured learning experience that takes place in a workplace for a limited time period. It may be paid or unpaid, as appropriate, and may be in private for-profit sector, or the public sector.",
+      "category": "Training & Education",
+      "keywords": ["work experience", "WEX", "structured learning", "workplace learning", "paid experience", "unpaid experience"]
+    },
+    {
+      "code": "E46",
+      "name": "Workforce Innovation and Opportunity Act (WIOA)",
+      "description": "AJCC staff informed an employer of available Workforce Innovation and Opportunity Act employer services that include, but are not limited to, customized training, on-the-job-training reimbursement assistance, and training subsidies.",
+      "category": "Training & Education",
+      "keywords": ["WIOA", "Workforce Innovation", "customized training", "OJT", "training subsidies", "employer services"]
+    },
+    {
+      "code": "E48",
+      "name": "Youth Employment Opportunities",
+      "description": "A Youth Employment Opportunity Program (YEOP) Specialist contacted an employer for the purposes of informing the employer about YEOP, and encouraging the employer to hire a Youth participant. To be used after site has been approved.",
+      "category": "Youth Services",
+      "keywords": ["YEOP", "youth employment", "youth hiring", "youth program", "site approval", "youth participant"]
+    },
+    {
+      "code": "E57",
+      "name": "Follow-up with Employer on New Hires",
+      "description": "AJCC staff contacted the employer to determine if a hired participant was successful, and to provide as-needed additional assistance to the employer to ensure satisfaction with the business services provided by AJCC staff.",
+      "category": "Follow-up & Quality Assurance",
+      "keywords": ["follow-up", "new hires", "employer satisfaction", "retention", "hired participant", "quality assurance"]
+    },
+    {
+      "code": "E59",
+      "name": "Follow-up with Employer on Referred Candidate",
+      "description": "AJCC staff contacted an employer via phone, email, or in person to follow-up on a candidate referred by staff to a CalJOBS job listing.",
+      "category": "Follow-up & Quality Assurance",
+      "keywords": ["follow-up", "referred candidate", "CalJOBS", "referral follow-up", "candidate status"]
+    },
+    {
+      "code": "E60",
+      "name": "Employer Networking",
+      "description": "AJCC staff provided an employer with information regarding AJCC services in an effort to establish a relationship, or to maintain an existing relationship.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["networking", "employer relationship", "AJCC services", "relationship building", "outreach"]
+    },
+    {
+      "code": "E62",
+      "name": "Referral to Community Resource",
+      "description": "AJCC staff provided a proactive linkage and referral to community resources that support an employer's workforce needs.",
+      "category": "Employer Outreach & Networking",
+      "keywords": ["community resource", "referral", "linkage", "workforce needs", "community partnership"]
+    },
+    {
+      "code": "E64",
+      "name": "Small Business Downsizing/Closure Assistance",
+      "description": "AJCC staff provided services to a small business. Assistance may include onsite visits to provide the employer with information on the available AJCC services for affected employees and referrals to appropriate community resources.",
+      "category": "Workforce Planning & Strategy",
+      "keywords": ["small business", "downsizing", "closure", "onsite visit", "affected employees", "community resources"]
+    },
+    {
+      "code": "E65",
+      "name": "Engage in Strategic Planning/Economic Development",
+      "description": "AJCC staff engaged in workforce investment strategic planning or business growth and economic development strategic planning. These activities include, but are not limited to, participating in community-based strategic planning; sponsoring employer forums; securing information on industry trends; providing information for the purpose of corporate economic development planning; partnering in collaborative efforts to identify workforce challenges; and developing ways to address those challenges.",
+      "category": "Workforce Planning & Strategy",
+      "keywords": ["strategic planning", "economic development", "industry trends", "employer forums", "workforce challenges", "business growth"]
+    },
+    {
+      "code": "E69",
+      "name": "Follow-up with Employer on Employer Services",
+      "description": "AJCC staff contacted the employer to determine if employer services that were provided by the AJCC were successful. To be done the following day.",
+      "category": "Follow-up & Quality Assurance",
+      "keywords": ["follow-up", "employer services", "service satisfaction", "next-day follow-up", "quality check"]
+    },
+    {
+      "code": "E70",
+      "name": "Youth Outreach and Marketing Presentation",
+      "description": "Staff conducted presentations at entities (e.g., employers, community-based organizations, schools, workforce partners) in the community serving youth on the available EDD and partner youth services and resources as part of the YEOP expansion effort.",
+      "category": "Youth Services",
+      "keywords": ["youth outreach", "marketing presentation", "YEOP", "EDD", "schools", "community organizations", "youth services"]
+    },
+    {
+      "code": "E71",
+      "name": "Youth Outreach and Marketing Contact",
+      "description": "Staff contacted entities (e.g., employers, community-based organizations, schools, workforce partners) serving youth to schedule an appointment to provide information on the available EDD and partner youth services and resources as part of the YEOP.",
+      "category": "Youth Services",
+      "keywords": ["youth outreach", "marketing contact", "YEOP", "appointment scheduling", "youth services", "community contact"]
+    },
+    {
+      "code": "E92",
+      "name": "Notification to Employer of Potential Applicant",
+      "description": "Staff notified the client of potential job. This code is system generated at time of client notification.",
+      "category": "Job Development & Placement",
+      "keywords": ["notification", "potential applicant", "system generated", "client notification", "job match", "auto-generated"]
+    },
+    {
+      "code": "181",
+      "name": "Supportive Service: Transportation Assistance TAP Card",
+      "description": "Participant is requesting assistance for a TAP CARD to commute to and from AJCC, Job search and vocational training search. Participant does not have an automobile and requires transportation assistance.",
+      "category": "Supportive Services",
+      "keywords": ["TAP card", "transportation", "commute", "bus pass", "transit", "supportive service", "vocational training"]
+    },
+    {
+      "code": "183",
+      "name": "Incentives/Bonuses",
+      "description": "Participant is requesting supportive services in the amount of $300 incentive for completion of all 6 INVEST workshops. Completion of 5 modules on the GetYourEdge.org. Completed: Fair chance workshops with INVEST BTS, budgets & finance basics, social media & online presence, developing a professional image, active listening, and dealing with difficult situations.",
+      "category": "Supportive Services",
+      "keywords": ["incentives", "bonuses", "INVEST workshops", "GetYourEdge", "completion bonus", "$300", "supportive service"]
+    },
+    {
+      "code": "188",
+      "name": "Clothing Voucher",
+      "description": "Participant is requesting assistance for clothing. Participant is scheduled to start school or work and does not have sufficient amount of clothing due to financial insecurity.",
+      "category": "Supportive Services",
+      "keywords": ["clothing", "voucher", "financial insecurity", "work clothes", "school clothes", "supportive service"]
+    }
+  ]
+}

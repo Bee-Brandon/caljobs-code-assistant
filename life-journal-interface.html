@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Journal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 { text-align: center; color: #667eea; margin-bottom: 10px; font-size: 32px; }
+        .subtitle { text-align: center; color: #999; margin-bottom: 20px; font-size: 14px; }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #667eea;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active { background: #667eea; color: white; }
+        .tab-btn:hover:not(.active) { background: #f0f0ff; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 18px; font-weight: 600; margin-bottom: 15px; color: #667eea; }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .record-btn { background: #667eea; color: white; }
+        .record-btn:hover { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+
+        .stop-btn { background: #ef4444; color: white; margin-top: 10px; }
+        .stop-btn:hover { background: #dc2626; }
+
+        .divider { text-align: center; margin: 30px 0; position: relative; }
+        .divider::before { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: #e5e5e5; }
+        .divider span { background: white; padding: 0 15px; position: relative; color: #999; font-size: 14px; }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        textarea { min-height: 150px; resize: vertical; }
+        textarea:focus, input[type="text"]:focus { outline: none; border-color: #667eea; }
+
+        .mood-selector { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+
+        .mood-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #e5e5e5;
+            background: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mood-btn:hover { transform: scale(1.1); }
+        .mood-btn.selected { border-color: #667eea; background: #667eea; transform: scale(1.2); }
+
+        .save-btn { background: #10b981; color: white; margin-top: 20px; }
+        .save-btn:hover { background: #059669; }
+        .save-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+        .status { text-align: center; padding: 15px; border-radius: 10px; margin-top: 20px; font-weight: 500; }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .status.loading { background: #dbeafe; color: #1e40af; }
+
+        .recording-indicator {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background: #fee2e2;
+            border-radius: 10px;
+            margin-top: 10px;
+            color: #991b1b;
+            font-weight: 500;
+        }
+        .recording-indicator.active { display: block; }
+        .timer { font-size: 24px; font-weight: bold; color: #ef4444; }
+
+        /* Entries List Styles */
+        .search-box { margin-bottom: 20px; }
+        .entries-list { max-height: 500px; overflow-y: auto; }
+
+        .entry-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .entry-date { font-weight: 600; color: #667eea; }
+        .entry-mood { font-size: 24px; }
+        .entry-meta { display: flex; gap: 15px; font-size: 12px; color: #999; margin-bottom: 10px; }
+        .entry-text { color: #333; line-height: 1.6; }
+        .entry-topics { margin-top: 10px; }
+
+        .topic-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .no-entries { text-align: center; color: #999; padding: 40px; }
+        .entry-count { text-align: center; color: #999; font-size: 14px; margin-bottom: 15px; }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: all 0.2s;
+            width: auto;
+        }
+        .delete-btn:hover { background: #fee2e2; color: #ef4444; }
+
+        .entry-actions { display: flex; align-items: center; gap: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Life Journal</h1>
+        <p class="subtitle">Capture your thoughts, anywhere</p>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="new">New Entry</button>
+            <button class="tab-btn" data-tab="view">View Entries</button>
+        </div>
+
+        <!-- New Entry Tab -->
+        <div class="tab-content active" id="tab-new">
+            <div class="section">
+                <div class="section-title">Voice Entry</div>
+                <button class="record-btn" id="recordBtn">Start Recording</button>
+                <button class="stop-btn" id="stopBtn" style="display: none;">Stop Recording</button>
+                <div class="recording-indicator" id="recordingIndicator">
+                    <div>Recording...</div>
+                    <div class="timer" id="timer">00:00</div>
+                </div>
+            </div>
+
+            <div class="divider"><span>OR</span></div>
+
+            <div class="section">
+                <div class="section-title">Type Your Entry</div>
+                <textarea id="textEntry" placeholder="What's on your mind?"></textarea>
+            </div>
+
+            <div class="section">
+                <div class="section-title">How are you feeling?</div>
+                <div class="mood-selector">
+                    <button class="mood-btn" data-mood="1">😢</button>
+                    <button class="mood-btn" data-mood="2">😕</button>
+                    <button class="mood-btn selected" data-mood="3">😐</button>
+                    <button class="mood-btn" data-mood="4">🙂</button>
+                    <button class="mood-btn" data-mood="5">😄</button>
+                </div>
+            </div>
+
+            <button class="save-btn" id="saveBtn">Save Entry</button>
+            <div class="status" id="status" style="display: none;"></div>
+        </div>
+
+        <!-- View Entries Tab -->
+        <div class="tab-content" id="tab-view">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search entries...">
+            </div>
+            <div class="entry-count" id="entryCount"></div>
+            <div class="entries-list" id="entriesList">
+                <div class="no-entries">Loading entries...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordingStartTime;
+        let timerInterval;
+        let selectedMood = 3;
+        let allEntries = [];
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+
+                if (btn.dataset.tab === 'view') {
+                    loadEntries();
+                }
+            });
+        });
+
+        // Mood selection
+        document.querySelectorAll('.mood-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedMood = btn.dataset.mood;
+            });
+        });
+
+        const recordBtn = document.getElementById('recordBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const textEntry = document.getElementById('textEntry');
+        const status = document.getElementById('status');
+        const recordingIndicator = document.getElementById('recordingIndicator');
+        const timer = document.getElementById('timer');
+        const searchInput = document.getElementById('searchInput');
+
+        // Search functionality
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            displayEntries(allEntries.filter(e =>
+                e.transcription.toLowerCase().includes(query) ||
+                (e.topics && e.topics.toLowerCase().includes(query)) ||
+                (e.location_name && e.location_name.toLowerCase().includes(query))
+            ));
+        });
+
+        // Load entries
+        async function loadEntries() {
+            try {
+                const response = await fetch('/recent-entries?limit=100');
+                const data = await response.json();
+                allEntries = data.entries;
+                displayEntries(allEntries);
+            } catch (err) {
+                document.getElementById('entriesList').innerHTML = '<div class="no-entries">Error loading entries</div>';
+            }
+        }
+
+        function getMoodEmoji(rating) {
+            const moods = { 1: '😢', 2: '😕', 3: '😐', 4: '🙂', 5: '😄' };
+            return moods[rating] || '';
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+        }
+
+        function displayEntries(entries) {
+            const container = document.getElementById('entriesList');
+            const countEl = document.getElementById('entryCount');
+
+            countEl.textContent = entries.length + ' entries';
+
+            if (entries.length === 0) {
+                container.innerHTML = '<div class="no-entries">No entries found</div>';
+                return;
+            }
+
+            container.innerHTML = entries.map(entry => {
+                const topics = entry.topics ? entry.topics.split(',').filter(t => t).map(t =>
+                    '<span class="topic-tag">' + t.trim() + '</span>'
+                ).join('') : '';
+
+                return '<div class="entry-card" data-id="' + entry.id + '">' +
+                    '<div class="entry-header">' +
+                        '<span class="entry-date">' + formatDate(entry.timestamp) + '</span>' +
+                        '<div class="entry-actions">' +
+                            '<span class="entry-mood">' + getMoodEmoji(entry.mood_rating) + '</span>' +
+                            '<button class="delete-btn" onclick="deleteEntry(' + entry.id + ')" title="Delete entry">🗑️</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="entry-meta">' +
+                        '<span>' + entry.word_count + ' words</span>' +
+                        '<span>' + (entry.time_of_day || '') + '</span>' +
+                        '<span>' + (entry.location_name || '') + '</span>' +
+                    '</div>' +
+                    '<div class="entry-text">' + entry.transcription + '</div>' +
+                    (topics ? '<div class="entry-topics">' + topics + '</div>' : '') +
+                '</div>';
+            }).join('');
+        }
+
+        // Recording
+        recordBtn.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+                mediaRecorder.onstop = async () => {
+                    clearInterval(timerInterval);
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    await saveEntry('voice', audioBlob);
+                };
+
+                mediaRecorder.start();
+                recordBtn.style.display = 'none';
+                stopBtn.style.display = 'block';
+                recordingIndicator.classList.add('active');
+
+                recordingStartTime = Date.now();
+                timerInterval = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+                    timer.textContent = String(Math.floor(elapsed/60)).padStart(2,'0') + ':' +
+                                       String(elapsed%60).padStart(2,'0');
+                }, 1000);
+            } catch (err) {
+                showStatus('error', 'Could not access microphone');
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(t => t.stop());
+                recordBtn.style.display = 'block';
+                stopBtn.style.display = 'none';
+                recordingIndicator.classList.remove('active');
+            }
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const text = textEntry.value.trim();
+            if (text) saveEntry('text', text);
+            else showStatus('error', 'Please enter some text first');
+        });
+
+        async function saveEntry(type, data) {
+            showStatus('loading', 'Saving your entry...');
+            saveBtn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                if (type === 'voice') formData.append('audio', data, 'recording.webm');
+                else formData.append('text', data);
+                formData.append('moodRating', selectedMood);
+                formData.append('locationName', 'Web Interface');
+
+                if (navigator.geolocation) {
+                    try {
+                        const pos = await new Promise((res, rej) =>
+                            navigator.geolocation.getCurrentPosition(res, rej));
+                        formData.append('latitude', pos.coords.latitude);
+                        formData.append('longitude', pos.coords.longitude);
+                    } catch(e) {}
+                }
+
+                const endpoint = type === 'voice' ? '/journal-entry' : '/text-entry';
+                const response = await fetch(endpoint, { method: 'POST', body: formData });
+
+                if (!response.ok) throw new Error('Failed to save');
+                const result = await response.json();
+                showStatus('success', 'Saved! ' + result.wordCount + ' words');
+
+                if (type === 'text') textEntry.value = '';
+                selectedMood = 3;
+                document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+                document.querySelector('[data-mood="3"]').classList.add('selected');
+            } catch (err) {
+                showStatus('error', 'Error: ' + err.message);
+            } finally {
+                saveBtn.disabled = false;
+            }
+        }
+
+        function showStatus(type, message) {
+            status.className = 'status ' + type;
+            status.textContent = message;
+            status.style.display = 'block';
+            if (type !== 'loading') setTimeout(() => status.style.display = 'none', 5000);
+        }
+
+        async function deleteEntry(entryId) {
+            if (!confirm('Are you sure you want to delete this entry? This cannot be undone.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/delete-entry/' + entryId, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to delete entry');
+                }
+
+                // Remove from local array and refresh display
+                allEntries = allEntries.filter(e => e.id !== entryId);
+                displayEntries(allEntries);
+
+                // Show success message in the view tab
+                const countEl = document.getElementById('entryCount');
+                const originalText = countEl.textContent;
+                countEl.textContent = 'Entry deleted!';
+                countEl.style.color = '#10b981';
+                setTimeout(() => {
+                    countEl.textContent = allEntries.length + ' entries';
+                    countEl.style.color = '#999';
+                }, 2000);
+            } catch (err) {
+                alert('Error deleting entry: ' + err.message);
+            }
+        }
+    </script>
+</body>
+</html>

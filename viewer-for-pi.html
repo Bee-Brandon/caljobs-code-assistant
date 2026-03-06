@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Journal Entries</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { text-align: center; color: #667eea; margin-bottom: 10px; font-size: 32px; }
+        .subtitle { text-align: center; color: #999; margin-bottom: 30px; font-size: 14px; }
+        .nav { display: flex; gap: 10px; margin-bottom: 30px; }
+        .nav button {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .nav button.active { background: #667eea; color: white; }
+        .search-box { margin-bottom: 20px; }
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .search-box input:focus { outline: none; border-color: #667eea; }
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+        .stat { flex: 1; text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 12px; color: #6b7280; margin-top: 4px; }
+        .entries { max-height: 600px; overflow-y: auto; }
+        .entry {
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        .entry:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .entry-date { font-weight: 600; color: #667eea; cursor: pointer; }
+        .entry-meta { display: flex; gap: 10px; font-size: 14px; color: #6b7280; align-items: center; }
+        .entry-preview { color: #374151; line-height: 1.6; margin-bottom: 10px; cursor: pointer; }
+        .entry-full {
+            display: none;
+            color: #374151;
+            line-height: 1.6;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .entry.expanded .entry-preview { display: none; }
+        .entry.expanded .entry-full { display: block; }
+        .entry-footer {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e5e5e5;
+        }
+        .mood { font-size: 20px; }
+        .tag { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .audio-player { margin-top: 10px; }
+        audio { width: 100%; max-width: 400px; }
+        .loading { text-align: center; padding: 40px; color: #6b7280; }
+        .no-entries { text-align: center; padding: 40px; color: #6b7280; }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .delete-btn:hover { background: #fee2e2; color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Journal Entries</h1>
+        <p class="subtitle">Your life archive</p>
+
+        <div class="nav">
+            <button class="active" onclick="window.location.href='/'">✍️ New Entry</button>
+            <button>📊 Stats</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search your entries...">
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="totalEntries">-</div>
+                <div class="stat-label">Total Entries</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="totalWords">-</div>
+                <div class="stat-label">Total Words</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="avgMood">-</div>
+                <div class="stat-label">Avg Mood</div>
+            </div>
+        </div>
+
+        <div class="entries" id="entriesContainer">
+            <div class="loading">Loading your entries...</div>
+        </div>
+    </div>
+
+    <script>
+        let allEntries = [];
+
+        async function loadEntries() {
+            try {
+                const response = await fetch('/entries');
+                const data = await response.json();
+                allEntries = data.entries;
+                displayStats();
+                displayEntries(allEntries);
+            } catch (err) {
+                document.getElementById('entriesContainer').innerHTML =
+                    '<div class="no-entries">Error loading entries: ' + err.message + '</div>';
+            }
+        }
+
+        function displayStats() {
+            const totalEntries = allEntries.length;
+            const totalWords = allEntries.reduce((sum, e) => sum + (e.word_count || 0), 0);
+            const moods = allEntries.filter(e => e.mood_rating).map(e => e.mood_rating);
+            const avgMood = moods.length > 0
+                ? (moods.reduce((a, b) => a + b, 0) / moods.length).toFixed(1)
+                : '-';
+            document.getElementById('totalEntries').textContent = totalEntries;
+            document.getElementById('totalWords').textContent = totalWords.toLocaleString();
+            document.getElementById('avgMood').textContent = avgMood;
+        }
+
+        function displayEntries(entries) {
+            const container = document.getElementById('entriesContainer');
+            if (entries.length === 0) {
+                container.innerHTML = '<div class="no-entries">No entries found</div>';
+                return;
+            }
+            container.innerHTML = entries.map(entry => {
+                const preview = entry.transcription.substring(0, 150) +
+                    (entry.transcription.length > 150 ? '...' : '');
+                const moodEmoji = ['', '😢', '😕', '😐', '🙂', '😄'][entry.mood_rating] || '';
+                const audioHtml = entry.audio_file_path
+                    ? `<div class="audio-player"><audio controls src="/${entry.audio_file_path}"></audio></div>`
+                    : '';
+                const topics = entry.topics
+                    ? entry.topics.split(',').map(t => `<span class="tag">${t}</span>`).join('')
+                    : '';
+                return `
+                    <div class="entry" data-id="${entry.id}">
+                        <div class="entry-header">
+                            <div class="entry-date" onclick="toggleEntry(${entry.id})">${entry.timestamp}</div>
+                            <div class="entry-meta">
+                                <span>${entry.word_count} words</span>
+                                ${entry.duration_seconds ? `<span>${Math.round(entry.duration_seconds)}s</span>` : ''}
+                                <button class="delete-btn" onclick="deleteEntry(${entry.id}, event)" title="Delete">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="entry-preview" onclick="toggleEntry(${entry.id})">${preview}</div>
+                        <div class="entry-full">${entry.transcription}${audioHtml}</div>
+                        <div class="entry-footer">
+                            ${moodEmoji ? `<span class="mood">${moodEmoji}</span>` : ''}
+                            <span>📍 ${entry.location_name}</span>
+                            <span>🕐 ${entry.time_of_day}</span>
+                            ${topics}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleEntry(id) {
+            const entry = document.querySelector(`.entry[data-id="${id}"]`);
+            if (entry) entry.classList.toggle('expanded');
+        }
+
+        async function deleteEntry(id, event) {
+            event.stopPropagation();
+            if (!confirm('Delete this entry? This cannot be undone.')) return;
+            try {
+                const response = await fetch(`/entry/${id}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error('Failed to delete');
+                allEntries = allEntries.filter(e => e.id !== id);
+                displayStats();
+                displayEntries(allEntries);
+            } catch (err) {
+                alert('Error deleting entry: ' + err.message);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (!query) {
+                displayEntries(allEntries);
+                return;
+            }
+            const filtered = allEntries.filter(entry =>
+                entry.transcription.toLowerCase().includes(query) ||
+                (entry.topics && entry.topics.toLowerCase().includes(query))
+            );
+            displayEntries(filtered);
+        });
+
+        loadEntries();
+    </script>
+</body>
+</html>

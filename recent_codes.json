@@ -1,0 +1,19 @@
+[
+  {
+    "codes": [
+      "E60",
+      "E03"
+    ],
+    "description": "Client obtained employment. Record the placement and update the job order.",
+    "naics_hint": "Look up the employer's industry",
+    "timestamp": "2026-02-04 09:13"
+  },
+  {
+    "codes": [
+      "181"
+    ],
+    "description": "Provided transportation supportive services (bus pass, gas card, etc.).",
+    "naics_hint": null,
+    "timestamp": "2026-02-04 09:05"
+  }
+]
