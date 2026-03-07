@@ -16,3 +16,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Source docs (already ingested into chroma_db)
+docs/

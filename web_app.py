@@ -23,6 +23,14 @@ try:
 except ImportError:
     pass
 
+# RAG / Navigator imports
+try:
+    from ai_assistant import build_rag_system_prompt, detect_query_domains, format_sources_for_display
+    from knowledge_base import get_collection, get_stats
+    RAG_AVAILABLE = True
+except ImportError:
+    RAG_AVAILABLE = False
+
 # ─── Page Config ─────────────────────────────────────────────────────────────
 
 st.set_page_config(
@@ -701,6 +709,16 @@ with st.sidebar:
     if naics_db:
         st.caption(f"{naics_db['metadata']['total_codes']:,} NAICS codes")
 
+    # Show Navigator knowledge base status
+    if RAG_AVAILABLE:
+        try:
+            kb_stats = get_stats()
+            total_chunks = kb_stats.get("total_chunks", 0)
+            if total_chunks > 0:
+                st.caption(f"Navigator: {total_chunks:,} knowledge chunks")
+        except Exception:
+            pass
+
     # Quick Actions (moved up)
     st.subheader("Quick Actions")
 
@@ -986,7 +1004,21 @@ else:
         with st.chat_message("assistant"):
             try:
                 client = anthropic.Anthropic(api_key=st.session_state.api_key, timeout=60.0)
-                system_prompt = build_system_prompt(caljobs_db) if caljobs_db else "You are a CalJOBS code assistant."
+
+                # Use RAG-enhanced prompt if available, otherwise fall back to basic
+                retrieved_chunks = []
+                if RAG_AVAILABLE:
+                    try:
+                        domain_filter = detect_query_domains(ai_query)
+                        system_prompt, retrieved_chunks = build_rag_system_prompt(
+                            ai_query,
+                            domain_filter=domain_filter
+                        )
+                    except Exception:
+                        # Fall back to basic prompt if RAG fails
+                        system_prompt = build_system_prompt(caljobs_db) if caljobs_db else "You are a CalJOBS code assistant."
+                else:
+                    system_prompt = build_system_prompt(caljobs_db) if caljobs_db else "You are a CalJOBS code assistant."
 
                 MODELS = ["claude-sonnet-4-20250514", "claude-3-5-sonnet-20241022", "claude-3-haiku-20240307"]
                 assistant_text = None
@@ -995,7 +1027,7 @@ else:
                     try:
                         with client.messages.stream(
                             model=model_name,
-                            max_tokens=512,
+                            max_tokens=800,
                             system=system_prompt,
                             messages=st.session_state.messages,
                         ) as stream:
@@ -1006,6 +1038,13 @@ else:
 
                 if assistant_text:
                     st.session_state.messages.append({"role": "assistant", "content": assistant_text})
+
+                    # Show sources if RAG was used
+                    if RAG_AVAILABLE and retrieved_chunks:
+                        sources_text = format_sources_for_display(retrieved_chunks)
+                        if sources_text:
+                            st.caption(sources_text)
+
                     # Extract and store referenced codes for persistent display
                     referenced = extract_code_references(assistant_text, caljobs_db)
                     st.session_state.ai_suggested_codes = referenced if referenced else []
